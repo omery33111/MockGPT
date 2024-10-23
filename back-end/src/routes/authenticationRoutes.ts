@@ -7,7 +7,7 @@ const router = Router();
 
 
 
-router.post('/register', registerUser);     //  /user/register
-router.post('/login', loginUser);     //  /user/register
+router.post('/register', registerUser);     //  /authentication/register
+router.post('/login', loginUser);     //  /authentication/register
 
 export default router;
