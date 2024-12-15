@@ -89,25 +89,30 @@ const MainCards = () => {
   const shuffledCards = cards.sort(() => 0.5 - Math.random()).slice(0, 5);
 
   return (
-    <div className="w-full max-w-md mt-1 flex flex-nowrap justify-center gap-x-2 xl:gap-x-2.5">
-      <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100">
-        {shuffledCards.map((card, index) => (
-          <li key={index} style={{ opacity: 1, willChange: 'auto' }}>
-            <button className="relative flex items-center gap-1.5 rounded-full border border-token-border-light px-3 py-2 text-start text-[13px] shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed xl:gap-2 xl:text-[14px]">
-              {card.svg}
-              <div className="max-w-full whitespace-nowrap text-gray-600 dark:text-gray-500">{card.title}</div>
-            </button>
-          </li>
-        ))}
+<div className="w-full max-w-md mt-1 flex flex-nowrap justify-center gap-x-2 xl:gap-x-2.5">
+  <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100 card-list">
+    {shuffledCards.map((card, index) => (
+      <li key={index} className="w-full sm:w-auto card-item">
+        <button
+          style={{ height: '42px' }}
+          className="relative flex items-center gap-1.5 rounded-full border border-token-border-light px-3 py-2 text-start text-[13px] shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed xl:gap-2 xl:text-[14px] card-button"
+        >
+          {card.svg}
+          <div className="max-w-full whitespace-nowrap text-gray-600 dark:text-gray-500">{card.title}</div>
+        </button>
+      </li>
+    ))}
 
-        {/* "More" button should always be on the far right */}
-        <li style={{ opacity: 1, willChange: 'auto' }}>
-          <button className="relative flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-token-border-light px-3 py-2 text-start text-[14px] text-gray-600 shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed dark:text-gray-500">
-            More
-          </button>
-        </li>
-      </ul>
-    </div>
+    <li className="w-full sm:w-auto card-item">
+      <button
+        style={{ height: '42px' }}
+        className="relative flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-token-border-light px-3 py-2 text-start text-[14px] text-gray-600 shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed dark:text-gray-500 card-button"
+      >
+        More
+      </button>
+    </li>
+  </ul>
+</div>
   );
 }
 

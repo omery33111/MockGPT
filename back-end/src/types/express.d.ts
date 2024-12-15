@@ -1,9 +1,10 @@
-import { JwtPayload } from 'jsonwebtoken';
+// express.d.ts
+import { IUser } from './models/user';
 
 declare global {
   namespace Express {
-    interface Request {
-      user?: JwtPayload | string;  // Add user to the request
+    export interface Request {
+      user?: IUser;
     }
   }
 }

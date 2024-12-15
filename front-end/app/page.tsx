@@ -1,7 +1,8 @@
 import React from 'react';
+import MainHeader from './components/homepage/MainHeader';
 import MainContent from './components/homepage/MainContent';
 import MainFooter from './components/homepage/MainFooter';
-import MainHeader from './components/homepage/MainHeader';
+import './globals.css';
 
 
 
@@ -10,7 +11,7 @@ const Page = () => {
 
   
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col">
       <MainHeader />
 
       <MainContent />
