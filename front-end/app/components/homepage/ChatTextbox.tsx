@@ -1,8 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const ChatTextbox = () => {
-  const [message, setMessage] = useState("");
+interface ChatTextboxProps {
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const ChatTextbox: React.FC<ChatTextboxProps> = ({ message, setMessage }) => {
+  const [inputElement, setInputElement] = useState<HTMLInputElement | null>(null);
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLDivElement>) => {
     setMessage(e.currentTarget.textContent || "");
@@ -15,8 +20,14 @@ const ChatTextbox = () => {
     }
   };
 
+  useEffect(() => {
+    if (inputElement) {
+      inputElement.value = message;
+    }
+  }, [message, inputElement]);
+
   return (
-    <div className="w-full max-w-[768px] translate-y-[2px] mx-auto">
+    <div className="chat-textbox-container w-full max-w-[768px] translate-y-[2px] mx-auto">
       <div className="flex justify-center">
         <form
           className="w-full"

@@ -1,5 +1,5 @@
 import React from "react";
-import InfoButton from "../base/InfoButton";
+import InfoButton from "../utils/InfoButton";
 
 const MainFooter = () => {
   return (

@@ -6,7 +6,7 @@ import SettingsInfo from "./SettingsInfo";
 const InfoButton = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showKeyboardSC, setShowKeyboardSC] = useState(false); // State to show KeyBoardSC
-    const [showSettingsInfo, setShowSettingsInfo] = useState(false); // State to show KeyBoardSC
+    const [showSettingsInfo, setShowSettingsInfo] = useState(false); // State to show ShowSettingsInfo
     const menuRef = useRef<HTMLDivElement>(null);
   
     const toggleMenu = () => {
@@ -58,6 +58,7 @@ const InfoButton = () => {
             bottom: "36px",
             minWidth: "max-content",
             zIndex: 50,
+            backgroundColor: "white"
           }}>
           <div
             data-side="top"

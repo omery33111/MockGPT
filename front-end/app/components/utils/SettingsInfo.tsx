@@ -1,13 +1,13 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import "./base.css";
+import "./utils.css";
 
-interface KeyBoardSCProps {
+interface SettingsInfoProps {
   show: boolean;
   onHide: () => void;
 }
 
-const SettingsInfo: React.FC<KeyBoardSCProps> = ({ show, onHide }) => {
+const SettingsInfo: React.FC<SettingsInfoProps> = ({ show, onHide }) => {
   return (
     <>
       {show && <div className="dim-background"></div>}

@@ -1,10 +1,17 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import './homepage.css';
 import { styled } from "@mui/material/styles";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
+import AdvancedFeaturesNoToken from "../utils/AdvancedFeaturesNoToken";
 
 const MainHeader = () => {
+  const [showAdvancedFeaturesNoToken, setShowAdvancedFeaturesNoToken] = useState(false); // State to show AdvancedFeaturesNoToken
+
+  const toggleAdvancedFeaturesNoToken = () => {
+    setShowAdvancedFeaturesNoToken(!showAdvancedFeaturesNoToken); // Toggle the AdvancedFeaturesNoToken modal
+  };
+
   const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -48,7 +55,8 @@ const MainHeader = () => {
             </BootstrapTooltip>
           </span>
         </div>
-        <button aria-label="Model selector, current model is 4o mini"
+        <button onClick={toggleAdvancedFeaturesNoToken}
+        aria-label="Model selector, current model is 4o mini"
                 type="button"
                 className="model-selector-button text-[#5D5D5D] group flex cursor-pointer items-center gap-1 rounded-lg py-1.5 px-3 text-lg hover:bg-token-main-surface-secondary radix-state-open:bg-token-main-surface-secondary text-token-text-secondary overflow-hidden whitespace-nowrap md:pl-[12px] pl-[38px] enabled:hover:bg-[rgba(0,0,0,0.025)]">
           <div className="text-token-text-secondary font-semibold">
@@ -76,6 +84,8 @@ const MainHeader = () => {
           Sign up
         </button>
       </div>
+
+      <AdvancedFeaturesNoToken show={showAdvancedFeaturesNoToken} onHide={() => setShowAdvancedFeaturesNoToken(false)}/>
     </header>
   );
 };

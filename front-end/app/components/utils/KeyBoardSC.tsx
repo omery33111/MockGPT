@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Modal } from "react-bootstrap";
-import './base.css';
+import './utils.css';
 
 interface KeyBoardSCProps {
     show: boolean;
@@ -8,11 +8,27 @@ interface KeyBoardSCProps {
   }
   
 const KeyBoardSC: React.FC<KeyBoardSCProps> = ({ show, onHide }) => {
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (modalContentRef.current && !modalContentRef.current.contains(event.target as Node)) {
+      onHide(); // Close the modal when clicking outside
+    }
+  };
+
+  useEffect(() => {
+    if (show) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [show]);
     return (
     <>
     {show && <div className="dim-background"></div>}
     <Modal show={show} onHide={onHide} className="custom-modal keyboard-sc-modal">
-    <div data-state="open">
+    <div ref={modalContentRef} data-state="open">
       <div className="px-4 pb-4 pt-5 sm:p-6 flex items-center justify-between border-b border-black/10 dark:border-white/10">
         <div className="flex">
           <div className="flex items-center">

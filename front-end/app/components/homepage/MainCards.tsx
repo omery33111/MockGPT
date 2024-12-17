@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from "react";
 
-const MainCards = () => {
+interface MainCardsProps {
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const MainCards: React.FC<MainCardsProps> = ({ setMessage }) => {
   const cards = [
     {
-      title: 'Summarize text',
-      color: 'rgb(234, 132, 68)',
+      title: "Summarize text",
+      color: "rgb(234, 132, 68)",
       svg: (
-        <svg width="20" height="20" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-md">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+        >
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -17,10 +28,17 @@ const MainCards = () => {
       ),
     },
     {
-      title: 'Code',
-      color: 'rgb(108, 113, 255)',
+      title: "Code",
+      color: "rgb(108, 113, 255)",
       svg: (
-        <svg width="18" height="18" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-md">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 25 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+        >
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -31,10 +49,17 @@ const MainCards = () => {
       ),
     },
     {
-      title: 'Get advice',
-      color: 'rgb(118, 208, 235)',
+      title: "Get advice",
+      color: "rgb(118, 208, 235)",
       svg: (
-        <svg width="19" height="19" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-md">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+        >
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -45,21 +70,52 @@ const MainCards = () => {
       ),
     },
     {
-      title: 'Help me write',
-      color: 'rgb(203, 139, 208)',
+      title: "Help me write",
+      color: "rgb(203, 139, 208)",
       svg: (
-        <svg width="19" height="19" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-md" style={{color: "rgb(203, 139, 208)"}}>
-          <path d="M3 6H10" stroke="rgb(203, 139, 208)" strokeWidth="2" strokeLinecap="round"></path>
-          <path d="M3 10H7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"></path>
-          <path d="M13.4282 17.5718L20.5 10.5C21.6046 9.39543 21.6046 7.60457 20.5 6.5C19.3954 5.39543 17.6046 5.39543 16.5 6.5L9.42819 13.5718C9.14899 13.851 8.95868 14.2066 8.88124 14.5938L8 19L12.4062 18.1188C12.7934 18.0413 13.149 17.851 13.4282 17.5718Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-          </svg>
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+          style={{ color: "rgb(203, 139, 208)" }}
+        >
+          <path
+            d="M3 6H10"
+            stroke="rgb(203, 139, 208)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          ></path>
+          <path
+            d="M3 10H7"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          ></path>
+          <path
+            d="M13.4282 17.5718L20.5 10.5C21.6046 9.39543 21.6046 7.60457 20.5 6.5C19.3954 5.39543 17.6046 5.39543 16.5 6.5L9.42819 13.5718C9.14899 13.851 8.95868 14.2066 8.88124 14.5938L8 19L12.4062 18.1188C12.7934 18.0413 13.149 17.851 13.4282 17.5718Z"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>
+        </svg>
       ),
     },
     {
-      title: 'Surprise me',
-      color: 'rgb(118, 208, 235)',
+      title: "Surprise me",
+      color: "rgb(118, 208, 235)",
       svg: (
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-md">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+        >
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -70,10 +126,17 @@ const MainCards = () => {
       ),
     },
     {
-      title: 'Brainstorm',
-      color: 'rgb(226, 197, 65)',
+      title: "Brainstorm",
+      color: "rgb(226, 197, 65)",
       svg: (
-        <svg width="20" height="20" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-md">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+        >
           <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -83,37 +146,111 @@ const MainCards = () => {
         </svg>
       ),
     },
+    {
+      title: "Analyze images",
+      color: "rgb(108, 113, 255)",
+      svg: (
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+        >
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M5.91444 7.59106C4.3419 9.04124 3.28865 10.7415 2.77052 11.6971C2.66585 11.8902 2.66585 12.1098 2.77052 12.3029C3.28865 13.2585 4.3419 14.9588 5.91444 16.4089C7.48195 17.8545 9.50572 19 12 19C14.4943 19 16.518 17.8545 18.0855 16.4089C19.6581 14.9588 20.7113 13.2585 21.2295 12.3029C21.3341 12.1098 21.3341 11.8902 21.2295 11.6971C20.7113 10.7415 19.6581 9.04124 18.0855 7.59105C16.518 6.1455 14.4943 5 12 5C9.50572 5 7.48195 6.1455 5.91444 7.59106ZM4.55857 6.1208C6.36059 4.45899 8.84581 3 12 3C15.1542 3 17.6394 4.45899 19.4414 6.1208C21.2384 7.77798 22.4152 9.68799 22.9877 10.7438C23.4147 11.5315 23.4147 12.4685 22.9877 13.2562C22.4152 14.312 21.2384 16.222 19.4414 17.8792C17.6394 19.541 15.1542 21 12 21C8.84581 21 6.36059 19.541 4.55857 17.8792C2.76159 16.222 1.58478 14.312 1.01232 13.2562C0.58525 12.4685 0.585249 11.5315 1.01232 10.7438C1.58478 9.688 2.76159 7.77798 4.55857 6.1208ZM12 9.5C10.6193 9.5 9.49999 10.6193 9.49999 12C9.49999 13.3807 10.6193 14.5 12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5ZM7.49999 12C7.49999 9.51472 9.51471 7.5 12 7.5C14.4853 7.5 16.5 9.51472 16.5 12C16.5 14.4853 14.4853 16.5 12 16.5C9.51471 16.5 7.49999 14.4853 7.49999 12Z"
+            fill="rgb(108, 113, 255)"
+          ></path>
+        </svg>
+      ),
+    },
+    {
+      title: "Create image",
+      color: "rgb(53, 174, 71)",
+      svg: (
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon-md"
+        >
+            <path
+              d="M4.5 17.5L7.56881 14.3817C8.32655 13.6117 9.55878 13.5826 10.352 14.316L16.5 20"
+              stroke="rgb(53, 174, 71)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></path>
+            <path
+              d="M19 12H18.3798C17.504 12 16.672 11.6173 16.102 10.9524L11.898 6.04763C11.328 5.38269 10.496 5 9.6202 5H6C4.89543 5 4 5.89543 4 7V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V17"
+              stroke="rgb(53, 174, 71)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></path>
+            <path
+              d="M19 5H18.3798C17.504 5 16.672 5.38269 16.102 6.04763L14 8.5"
+              stroke="rgb(53, 174, 71)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            ></path>
+            <circle cx="8.5" cy="9.5" r="1.5" fill="rgb(53, 174, 71)"></circle>
+            <path
+              d="M18 14V10C18 9.58798 18.4704 9.35279 18.8 9.6L21.4667 11.6C21.7333 11.8 21.7333 12.2 21.4667 12.4L18.8 14.4C18.4704 14.6472 18 14.412 18 14Z"
+              fill="rgb(53, 174, 71)"
+            ></path>
+            <path
+              d="M18 7V3C18 2.58798 18.4704 2.35279 18.8 2.6L21.4667 4.6C21.7333 4.8 21.7333 5.2 21.4667 5.4L18.8 7.4C18.4704 7.64721 18 7.41202 18 7Z"
+              fill="rgb(53, 174, 71)"
+            ></path>
+        </svg>
+      ),
+    },
   ];
 
-  // Shuffle the cards array
-  const shuffledCards = cards.sort(() => 0.5 - Math.random()).slice(0, 5);
+  const [shuffledCards, setShuffledCards] = useState(cards.slice(0, 5));
+
+  useEffect(() => {
+    setShuffledCards((prev) =>
+      [...cards].sort(() => 0.5 - Math.random()).slice(0, 5)
+    );
+  }, []);
 
   return (
-<div className="w-full max-w-md mt-1 flex flex-nowrap justify-center gap-x-2 xl:gap-x-2.5">
-  <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100 card-list">
-    {shuffledCards.map((card, index) => (
-      <li key={index} className="w-full sm:w-auto card-item">
-        <button
-          style={{ height: '42px' }}
-          className="relative flex items-center gap-1.5 rounded-full border border-token-border-light px-3 py-2 text-start text-[13px] shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed xl:gap-2 xl:text-[14px] card-button"
-        >
-          {card.svg}
-          <div className="max-w-full whitespace-nowrap text-gray-600 dark:text-gray-500">{card.title}</div>
-        </button>
-      </li>
-    ))}
+    <div className="w-full max-w-md mt-1 flex flex-nowrap justify-center gap-x-2 xl:gap-x-2.5">
+      <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100 card-list">
+        {shuffledCards.map((card, index) => (
+          <li key={index} className="w-full sm:w-auto card-item">
+            <button
+              style={{ height: "42px" }}
+              className="relative flex items-center gap-1.5 rounded-full border border-token-border-light px-3 py-2 text-start text-[13px] shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed xl:gap-2 xl:text-[14px] card-button"
+              onClick={() => setMessage(card.title)}
+            >
+              {card.svg}
+              <div className="max-w-full whitespace-nowrap text-gray-600 dark:text-gray-500">
+                {card.title}
+              </div>
+            </button>
+          </li>
+        ))}
 
-    <li className="w-full sm:w-auto card-item">
-      <button
-        style={{ height: '42px' }}
-        className="relative flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-token-border-light px-3 py-2 text-start text-[14px] text-gray-600 shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed dark:text-gray-500 card-button"
-      >
-        More
-      </button>
-    </li>
-  </ul>
-</div>
+        <li className="w-full sm:w-auto card-item">
+          <button
+            style={{ height: "42px" }}
+            className="relative flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-token-border-light px-3 py-2 text-start text-[14px] text-gray-600 shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed dark:text-gray-500 card-button"
+          >
+            More
+          </button>
+        </li>
+      </ul>
+    </div>
   );
-}
+};
 
 export default MainCards;

@@ -19,6 +19,13 @@
   transition: box-shadow 0.2s ease-in-out;
 }
 
+
+.chat-textbox-container {
+  position: relative;
+  margin: 0 auto;
+  max-width: 768px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -51,5 +58,18 @@
   .card-button {
     height: auto; /* Allow dynamic height for better adaptability */
     width: 100%; /* Full width for the card */
+  }
+}
+
+
+@media (max-width: 511px) {
+  .chat-textbox-container {
+    position: fixed;
+    margin-bottom: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px;
   }
 }
