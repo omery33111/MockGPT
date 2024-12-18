@@ -26,3 +26,8 @@
 .custom-modal.settings-info-modal .modal-content {
   width: 448px;
 }
+
+.custom-modal.settings-clearchat-modal .modal-content {
+  width: 384px;
+  height: 288px;
+}

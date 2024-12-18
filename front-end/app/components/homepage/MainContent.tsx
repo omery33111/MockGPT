@@ -8,7 +8,7 @@ import MainCards from './MainCards';
 const MainContent = () => {
   const [message, setMessage] = useState<string>("");
   return (
-    <main className="flex-grow flex flex-col justify-center items-center text-center gap-[26px]">
+    <main className="flex-grow flex flex-col justify-center items-center text-center gap-[26px] mt-[10px]">
 
         <AnimatedText />
 

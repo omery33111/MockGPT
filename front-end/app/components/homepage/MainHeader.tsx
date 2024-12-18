@@ -4,12 +4,18 @@ import './homepage.css';
 import { styled } from "@mui/material/styles";
 import Tooltip, { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
 import AdvancedFeaturesNoToken from "../utils/AdvancedFeaturesNoToken";
+import ClearChat from "../utils/ClearChat";
 
 const MainHeader = () => {
   const [showAdvancedFeaturesNoToken, setShowAdvancedFeaturesNoToken] = useState(false); // State to show AdvancedFeaturesNoToken
+  const [showtoggleClearChat, setShowtoggleClearChat] = useState(false); // State to show showtoggleClearChat
 
   const toggleAdvancedFeaturesNoToken = () => {
     setShowAdvancedFeaturesNoToken(!showAdvancedFeaturesNoToken); // Toggle the AdvancedFeaturesNoToken modal
+  };
+
+  const toggleClearChat = () => {
+    setShowtoggleClearChat(!showtoggleClearChat); // Toggle the toggleClearChat modal
   };
 
   const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -32,7 +38,7 @@ const MainHeader = () => {
     <header className="w-full p-2 flex justify-between items-center absolute top-0 left-0">
       <div className="flex items-center gap-0 ml-[4px] max-md:justify-center max-md:w-full">
         <div className="flex items-center">
-        <span className="flex" data-state="closed">
+        <span className="flex" data-state="closed" onClick={toggleClearChat}>
             <BootstrapTooltip title="New chat" placement="bottom">
               <button
                 aria-label="New chat"
@@ -86,6 +92,7 @@ const MainHeader = () => {
       </div>
 
       <AdvancedFeaturesNoToken show={showAdvancedFeaturesNoToken} onHide={() => setShowAdvancedFeaturesNoToken(false)}/>
+      <ClearChat show={showtoggleClearChat} onHide={() => setShowtoggleClearChat(false)}/>
     </header>
   );
 };

@@ -14,8 +14,13 @@
   animation-delay: 1s;
 }
 
+.card-list2 {
+  opacity: 0;
+  animation: fadeIn 0.4s forwards;
+}
+
 .card-button {
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.05), 0px 0px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.06), 0px 0px 5px rgba(0, 0, 0, 0.06);
   transition: box-shadow 0.2s ease-in-out;
 }
 

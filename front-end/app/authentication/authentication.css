@@ -194,6 +194,11 @@
     cursor: pointer;
 }
 
+.continue-btn:hover {
+    background-color: #0e9270;
+    color: #fff;
+}
+
 .other-page {
     text-align: center;
     margin-top: 16px;
@@ -264,6 +269,11 @@
     outline: 0;
 }
 
+.social-btn:hover {
+    background-color: #e6e6e6; /* Approximately 20% darker/grayish white */
+    color: #2d333a; /* Keeps original text color */
+}
+
 .social-logo-wrapper {
     position: absolute;
     left: 26px;
@@ -274,7 +284,7 @@
 .social-logo {
     width: 20px;
     height: 20px;
-    transform: translateY(-3px);
+    transform: translateY(-1px);
     display: inline-block;
 }
 

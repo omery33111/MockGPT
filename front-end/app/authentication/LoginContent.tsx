@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import SocialButton from "./SocialButton";
 import AuthEmailField from "../components/utils/AuthEmailField";
 
-const RegisterContent = () => {
+const LoginContent = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const RegisterContent = () => {
     <main className="main-container">
       <section className="content-wrapper">
         <div className="title-wrapper">
-          <h1 className="title">Create an account</h1>
+          <h1 className="title">Welcome back</h1>
         </div>
 
         <div className="login-container">
@@ -43,9 +43,9 @@ const RegisterContent = () => {
             <button className="continue-btn">Continue</button>
 
             <p className="other-page">
-              Already have an account?
-              <a className="other-page-link" href="/authentication/login">
-                Login
+              Don't have an account?
+              <a className="other-page-link" href="/authentication/register">
+                Sign Up
               </a>
             </p>
 
@@ -79,4 +79,4 @@ const RegisterContent = () => {
   );
 };
 
-export default RegisterContent;
+export default LoginContent;

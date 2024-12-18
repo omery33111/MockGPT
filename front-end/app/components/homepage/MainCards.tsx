@@ -214,39 +214,63 @@ const MainCards: React.FC<MainCardsProps> = ({ setMessage }) => {
     },
   ];
 
-  const [shuffledCards, setShuffledCards] = useState(cards.slice(0, 5));
+  const [displayedCards, setDisplayedCards] = useState(cards.slice(0, 5));
 
-  useEffect(() => {
-    setShuffledCards((prev) =>
-      [...cards].sort(() => 0.5 - Math.random()).slice(0, 5)
-    );
-  }, []);
+  const handleShowMore = () => {
+    const additionalCards = cards.slice(displayedCards.length, displayedCards.length + 3);
+    setDisplayedCards((prev) => [...prev, ...additionalCards]);
+  };
 
   return (
     <div className="w-full max-w-md mt-1 flex flex-nowrap justify-center gap-x-2 xl:gap-x-2.5">
-      <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100 card-list">
-        {shuffledCards.map((card, index) => (
-          <li key={index} className="w-full sm:w-auto card-item">
-            <button
-              style={{ height: "42px" }}
-              className="relative flex items-center gap-1.5 rounded-full border border-token-border-light px-3 py-2 text-start text-[13px] shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed xl:gap-2 xl:text-[14px] card-button"
-              onClick={() => setMessage(card.title)}
-            >
-              {card.svg}
-              <div className="max-w-full whitespace-nowrap text-gray-600 dark:text-gray-500">
-                {card.title}
-              </div>
-            </button>
-          </li>
-        ))}
 
+      <div>
+          <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100 card-list">
+          {displayedCards.slice(0, 5).map((card, index) => (
+                <button
+                  key={index}
+                  className="card-button h-[42px] relative flex items-center gap-1.5 rounded-full border border-token-border-light px-3 py-2 text-start text-[13px] shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed"
+                  onClick={() => setMessage(card.title)}
+                >
+                  {card.svg}
+                  <div className="max-w-full whitespace-nowrap text-gray-600 dark:text-gray-500">
+                    {card.title}
+                  </div>
+                </button>
+              ))}
+              </ul>
+
+              <div className="mt-[10px]" style = {{justifyContent: "center", textAlign: "center", display: "flex"}}>
+            {displayedCards.length > 5 && (
+              <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100 card-list2 mb-[15px]">
+                {displayedCards.slice(5).map((card, index) => (
+                  <button
+                    key={index}
+                    className="card-button h-[42px] relative flex items-center gap-1.5 rounded-full border border-token-border-light px-3 py-2 text-start text-[13px] shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed"
+                    onClick={() => setMessage(card.title)}
+                  >
+                    {card.svg}
+                    <div className="max-w-full whitespace-nowrap text-gray-600 dark:text-gray-500">
+                      {card.title}
+                    </div>
+                  </button>
+                ))}
+              </ul>
+            )}
+            </div>
+        </div>
+
+      <ul className="relative flex items-stretch gap-2 xl:gap-2.5 flex-nowrap justify-start opacity-100 card-list">
         <li className="w-full sm:w-auto card-item">
+        {displayedCards.length < cards.length && (
           <button
+            onClick={handleShowMore}
             style={{ height: "42px" }}
-            className="relative flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-token-border-light px-3 py-2 text-start text-[14px] text-gray-600 shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed dark:text-gray-500 card-button"
+            className="h-[42px] relative flex max-w-full items-center gap-2 whitespace-nowrap rounded-full border border-token-border-light px-3 py-2 text-start text-[14px] text-gray-600 shadow-xxs transition enabled:hover:bg-[rgba(0,0,0,0.020)] disabled:cursor-not-allowed dark:text-gray-500 card-button"
           >
             More
           </button>
+        )}
         </li>
       </ul>
     </div>
